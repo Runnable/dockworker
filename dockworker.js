@@ -39,6 +39,7 @@ var startArgs = startCommandArray;
 var applog = fs.createWriteStream("/var/log/app.log", { flags: 'a' });
 
 var start;
+
 function startApp() {
   isAppRunning = true;
   start = spawn(startCmd, startArgs, { cwd: serviceSrcDir });
@@ -48,23 +49,47 @@ function startApp() {
   start.stdout.pipe(applog, { end: false });
   start.stderr.pipe(applog, { end: false });
 }
-startApp();
 
 // tty
 
 var server = http.createServer();
 
 server.on("request", function(req, res) {
-  if (req.url.toLowerCase()  == "/api/restart") {
+
+  if (req.url.toLowerCase()  == "/api/start") {
     if (isAppRunning) {
       start.kill();
       start.once("exit", function() {
         startApp();
+        res.writeHead(200);
+        res.end();
       });
     } else {
       startApp();
+      res.writeHead(200);
+      res.end();
     }
+  } else if (req.url.toLowerCase()  == "/api/stop") {
+    if (!isAppRunning) {
+      res.writeHead(200);
+      res.end();
+    } else {
+      start.kill();
+      start.once("exit", function() {
+        isAppRunning = false;
+        res.writeHead(200);
+        res.end();
+      });
+    }
+  } else if (req.url.toLowerCase() == "/api/running") {
+    res.writeHead('content-type', 'application/json');
+    res.writeHead(200);
+    res.end(JSON.stringify({ running: isAppRunning }));
+  } else {
+    res.writeHead(404);
+    res.end();
   }
+
 });
 
 var termsock = shoe(function (remote) {
