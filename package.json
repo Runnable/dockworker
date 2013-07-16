@@ -1,12 +1,21 @@
 {
-  "name": "Dockworker",
+  "name": "dockworker",
   "author": "runnable.com",
   "version": "0.0.3",
   "description": "daemon running on the docker containers",
+  "main": "index.js",
   "dependencies": {
     "shoe": "0.0.11",
     "pty.js": "*",
     "mux-demux": "~3.7.5",
-    "dnode": "~1.0.5"
+    "dnode": "~1.0.5",
+    "express": "~3.3.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "browserify": "~2.25.0",
+    "tty.js": "~0.2.10"
   }
 }
