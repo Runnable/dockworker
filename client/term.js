@@ -7,8 +7,8 @@ var MuxDemux = require('mux-demux');
 
 window.start = onConnect;
 
-function onConnect () {
-  var stream = shoe('/streams/terminal');
+function onConnect (url) {
+  var stream = shoe(url || '/streams/terminal');
   var muxDemux = MuxDemux(onStream);
   stream.pipe(muxDemux).pipe(stream);
   stream.on('end', reconnect);
@@ -19,9 +19,7 @@ function reconnect () {
 }
 
 function onStream (stream) {
-  console.log(0.5, stream);
   if (stream.meta === 'pty') {
-    console.log(1);
     onPty(stream);
   }
   if (stream.meta === 'dnode') {
@@ -30,7 +28,7 @@ function onStream (stream) {
 }
 
 function onPty (stream) {
-  console.log(2);
+  window.pty = stream;
   var term = window.term = new Terminal({
     cols: 80,
     rows: 24,
@@ -49,8 +47,8 @@ function onPty (stream) {
 }
 
 function resize (term) {
-  x = document.body.clientWidth / term.element.offsetWidth;
-  y = document.body.clientHeight / term.element.offsetHeight;
+  var x = document.body.clientWidth / term.element.offsetWidth;
+  var y = document.body.clientHeight / term.element.offsetHeight;
   x = (x * term.cols) | 0;
   y = (y * term.rows) | 0;
   x -= 1;

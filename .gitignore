@@ -15,5 +15,6 @@ client/termBundle.js
 pids
 logs
 results
+tmp
 
 npm-debug.log
