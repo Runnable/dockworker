@@ -1,6 +1,5 @@
 build:
-	@ ./node_modules/.bin/browserify ./client/term.js -d -o ./client/termBundle.js;
-	@ ./node_modules/.bin/browserify ./client/log.js -d -o ./client/logBundle.js;
+	@ ./node_modules/.bin/browserify ./lib/client.js -d -o ./public/bundle.js;
 install:
 	@npm install
 npminstall:

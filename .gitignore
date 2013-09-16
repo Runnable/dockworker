@@ -9,11 +9,11 @@ lib-cov
 *.out
 *.pid
 *.gz
-client/logBundle.js
-client/termBundle.js
+public/bundle.js
 
 pids
 logs
 results
+tmp
 
 npm-debug.log

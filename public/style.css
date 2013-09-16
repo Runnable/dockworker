@@ -1,0 +1,34 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  background: #383734; /* grey bg */
+}
+html{
+  padding:8px;
+}
+.terminal {
+  font-family: "DejaVu Sans Mono", "Liberation Mono", monospace;
+  font-size: 11px;
+  display: inline-block;
+  background: #383734 !important; /* grey bg */
+}
+.reverse-video {
+  color: #000;
+  background: #f0f0f0;
+  display: none;
+}
+.focused .reverse-video {
+  display: inline;
+}
+#loader {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  top: 30%;
+  text-align: center;
+  color: white;
+}

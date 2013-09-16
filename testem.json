@@ -1,0 +1,13 @@
+{
+  "framework": "mocha",
+  "serve_files": [ 
+    "public/bundle.js",
+    "pubic/testBundle.js" 
+  ],
+  "src_files": [
+    "lib/client.js"
+  ],
+  "before_tests": "browserify clientTests/terminalTest.js -d -o public/testBundle.js; browserify lib/client.js -d -o public/bundle.js; sudo npm start & WORKER_PID=$!",
+  "on_exit": "rm public/testBundle.js; kill $WORKER_PID",
+  "launch_in_dev": [ "chrome", "firefox", "phantomjs", "safari" ]
+}
