@@ -49,26 +49,34 @@ describe('Control', function (){
         }
       });
     })
+    it('should have web up', function (done) {
+      request({
+        url: 'http://localhost:15000/api/checkWebUp',
+        json: {}
+      }, function (err, res, body) {
+        if (err) {
+          done(err);
+        } else if (body.message !== 'application checkWebUped successfully') {
+          console.log(body);
+          done(new Error('web down'));
+        } else {
+          done();
+        }
+      });
+    })
     it('should say hello', function (done) {
-      checkConnection();
-      function checkConnection () {
-        request({
-          url: 'http://localhost:8080',
-          json: {}
-        }, function (err, res, body) {
-          if (err) {
-            if (err.code === 'ECONNREFUSED') {
-              setTimeout(checkConnection, 10);
-            } else {
-              done(err);
-            }
-          } else if (body !== 'hello') {
-            done(new Error('rude'));
-          } else {
-            done();
-          }
-        });
-      }
+      request({
+        url: 'http://localhost:8080',
+        json: {}
+      }, function (err, res, body) {
+        if (err) {
+          done(err);
+        } else if (body !== 'hello') {
+          done(new Error('rude'));
+        } else {
+          done();
+        }
+      });
     })
   })
   describe('restart', function (){
@@ -100,26 +108,34 @@ describe('Control', function (){
         }
       });
     })
-    it('should say hello', function (done){
-      checkConnection();
-      function checkConnection () {
-        request({
-          url: 'http://localhost:8080',
-          json: {}
-        }, function (err, res, body) {
-          if (err) {
-            if (err.code === 'ECONNREFUSED') {
-              setTimeout(checkConnection, 10);
-            } else {
-              done(err);
-            }
-          } else if (body !== 'hello') {
-            done(new Error('rude'));
-          } else {
-            done();
-          }
-        });
-      }
+    it('should have web up', function (done) {
+      request({
+        url: 'http://localhost:15000/api/checkWebUp',
+        json: {}
+      }, function (err, res, body) {
+        if (err) {
+          done(err);
+        } else if (body.message !== 'application checkWebUped successfully') {
+          console.log(body);
+          done(new Error('web down'));
+        } else {
+          done();
+        }
+      });
+    })
+    it('should say hello', function (done) {
+      request({
+        url: 'http://localhost:8080',
+        json: {}
+      }, function (err, res, body) {
+        if (err) {
+          done(err);
+        } else if (body !== 'hello') {
+          done(new Error('rude'));
+        } else {
+          done();
+        }
+      });
     })
   })
   describe('stop', function (){

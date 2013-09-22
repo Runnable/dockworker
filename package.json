@@ -15,7 +15,9 @@
     "browserify": "~2.25.1",
     "async": "~0.2.9",
     "request": "~2.27.0",
-    "touch": "0.0.2"
+    "touch": "0.0.2",
+    "from": "~0.1.3",
+    "portscanner": "~0.1.3"
   },
   "scripts": {
     "start": "node index.js",
