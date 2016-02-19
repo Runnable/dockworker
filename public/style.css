@@ -15,6 +15,7 @@ html{
   font-size: 11px;
   display: inline-block;
   background: #383734 !important; /* grey bg */
+  border: none;
 }
 .focused .reverse-video {
   color: #383734;
