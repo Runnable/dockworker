@@ -23,7 +23,8 @@
     "away": "~1.0.0",
     "fstream": "~0.1.25",
     "tar": "~0.1.19",
-    "findit": "~1.1.0"
+    "findit": "~1.1.0",
+    "cors": "~2.7.1"
   },
   "scripts": {
     "start": "node index.js",
