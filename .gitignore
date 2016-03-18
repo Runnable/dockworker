@@ -1,5 +1,5 @@
 .vagrant
-.DS_Store
+*.DS_Store
 lib-cov
 *.seed
 *.log
